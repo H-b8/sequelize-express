@@ -26,7 +26,7 @@ const getAll = async (req, res) => {
 		});
 		res.status(200).send(classrooms);
 	} catch (err) {
-		res.status(400).send('CLASSROOMS NOT FOUND', err);
+		res.status(400).send(err);
 	};
 };
 
@@ -40,7 +40,7 @@ const getOne = async (req, res) => {
 		});
 		res.status(200).send(classroom);
 	} catch (err) {
-		res.status(404).send('CLASSROOM NOT FOUND', err)
+		res.status(404).send(err)
 	};
 };
 
@@ -57,12 +57,12 @@ const update = async (req, res) => {
 			const updatedClassroom = await classroom.update({
 				class_name: req.body.class_name || classroom.class_name,
 			});
-			res.status(200).send('CLASSROOM UPDATED', updatedClassroom);
+			res.status(200).send(updatedClassroom);
 		} catch (err) {
-			res.status(400).send('CLASSROOM NOT UPDATED', err);
+			res.status(400).send(err);
 		};
 	} catch (err) {
-		res.status(400).send('CLASSROOM NOT FOUND', err);
+		res.status(400).send(err);
 	};
 };
 
@@ -79,10 +79,10 @@ const deleteOne = async (req, res) => {
 			await classroom.destroy();
 			res.status(200).send('CLASSROOM DELETED');
 		} catch (err) {
-			res.status(400).send('CLASSROOM NOT DELETED', err);
+			res.status(400).send(err);
 		};
 	} catch (err) {
-		res.status(400).send('CLASSROOM NOT FOUND', err);
+		res.status(400).send(err);
 	};
 };
 
